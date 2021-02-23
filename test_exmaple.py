@@ -2,20 +2,20 @@ import pygame
 import pygame.camera
 from pygame.locals import *
 
-pygame.init() #初始化pygame
-pygame.camera.init() ＃初始化相機模組
+pygame.init() # 初始化pygame
+pygame.camera.init() # 初始化相機模組
 
 class Capture(object):
     def __init__(self):
         self.size = (640,480) # 大小為 640 x 480
         # create a display surface. standard pygame stuff
-        self.display = pygame.display.set_mode(self.size, 0) # 
+        self.display = pygame.display.set_mode(self.size, 0) # 設置視窗大小
 
         # this is the same as what we saw before
-        self.clist = pygame.camera.list_cameras()
-        if not self.clist:
+        self.clist = pygame.camera.list_cameras() # 搜尋可使用的相機裝置並且放入list
+        if not self.clist: # 搜尋不到可使用的相機裝時
             raise ValueError("Sorry, no cameras detected.")
-        self.cam = pygame.camera.Camera(self.clist[0], self.size)
+        self.cam = pygame.camera.Camera(self.clist[0], self.size) # 設置用相機為相機list的第一個
         self.cam.start()
 
         # create a surface to capture to.  for performance purposes
