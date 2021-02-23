@@ -15,12 +15,12 @@ class Capture(object):
         self.clist = pygame.camera.list_cameras() # 搜尋可使用的相機裝置並且放入list
         if not self.clist: # 搜尋不到可使用的相機裝時
             raise ValueError("Sorry, no cameras detected.")
-        self.cam = pygame.camera.Camera(self.clist[0], self.size) # 設置用相機為相機list的第一個
-        self.cam.start()
+        self.cam = pygame.camera.Camera(self.clist[0], self.size) # 設置欲啟用的相機，為相機list的第一個
+        self.cam.start() # 啟動該相機
 
         # create a surface to capture to.  for performance purposes
         # bit depth is the same as that of the display surface.
-        self.snapshot = pygame.surface.Surface(self.size, 0, self.display)
+        self.snapshot = pygame.surface.Surface(self.size, 0, self.display) # 設置畫布大小，並且把畫布設置在self.display這個視窗上 
 
     def get_and_flip(self):
         # if you don't want to tie the framerate to the camera, you can check
